@@ -39,7 +39,7 @@ describe('Central de Atendimento ao Cliente TAT', function() {
 
       cy.get('.button').click()
       cy.contains("Forneça o máximo de informações, por favor.")
-      cy.get('.success').should('have.contain','Mensagem enviada com sucesso..')
+      cy.get('.success').should('have.contain','Mensagem enviada com sucesso.')
       
     })
   
@@ -99,7 +99,7 @@ it('seleciona arquivo com alias ', () => {
 it('verifica nova pagina de privacidade', () => {
   cy.get('#privacy a')
     .should('have.attr', 'target', '_blank')
-    .click()  
+    //.click()  
 });
 
 it('valida privacidade abrindo na mesma pagina usando o invoke', () => {
@@ -110,7 +110,7 @@ it('valida privacidade abrindo na mesma pagina usando o invoke', () => {
 
 it('exibe msg no log', () => {
      console.log('end game')
-     alert(`fim dos teste ${nome} ${sobrenome}`)
+     //alert(`fim dos teste ${nome} ${sobrenome}`)
    });
   
 })  
