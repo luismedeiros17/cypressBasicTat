@@ -1,0 +1,2 @@
+cy.clock // congela o relógio do navegador
+cy.tick //// avança o relógio três segundos (em milissegundos). Avanço este tempo para não perdê-lo esperando.

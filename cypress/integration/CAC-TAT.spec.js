@@ -120,3 +120,15 @@ it('teste pagina privacidade independente', () => {
     cy.title('contain','CAC TAT - Política de privacidade')
     cy.get('#white-background').should('be.visible')
 });
+
+it('exibe mensagem por 3 segundos', function() {
+  cy.clock() // congela o relógio do navegador
+
+  // (...) // ação que dispara algo que exibe uma mensagem por três segundos
+
+  // (...) // verificação de que a mensagem está visível
+
+  cy.tick(3000) // avança o relógio três segundos (em milissegundos). Avanço este tempo para não perdê-lo esperando.
+
+  // (...) // verificação de que a mensagem não está mais visível
+})
