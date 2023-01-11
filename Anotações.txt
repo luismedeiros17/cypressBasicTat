@@ -1,2 +1,28 @@
+select file 
+invoke
+
 cy.clock // congela o relógio do navegador
 cy.tick //// avança o relógio três segundos (em milissegundos). Avanço este tempo para não perdê-lo esperando.
+
+lodash
+Cypress._.times(3, () => { REPETE O TESTES X VZS
+
+invoke.show ///exibe elemento
+ cy.get('.success').invoke('show')
+
+invoke.hide // esconde elemento
+cy.get('.success').invoke('hide')
+
+cy.request
+requisição http pode ser usad na api
+comandos : 
+cy.request('https://cac-tat.s3.eu-central-1.amazonaws.com/index.html')
+            .should(function(response){
+             const {status, statusText, body } = response
+             expect(status).to.equal(200)       //  verifica o retorno    
+             expect(statusText).to.equal('OK') // verifica o retorno
+             expect(body).to.include('CAC TAT') // verifica se existe no texto 
+
+             console.log(Response)
+        })
+        

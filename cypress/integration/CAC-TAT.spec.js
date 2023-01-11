@@ -14,19 +14,22 @@ const sobrenome = faker.name.lastName()
 const email = faker.internet.email()
 const telefone = faker.phone.number('011#########')
 const texto = faker.lorem.paragraph()
-
+const tempo = 3000
 describe('Central de Atendimento ao Cliente TAT', function() {    
   beforeEach(function (){
     cy.visit('./src/index.html')
     //cy.visit(url)
   }) 
-  
-  it('verifica o título da aplicação', function() {        
-    
-    cy.title().should('be.equal', 'Central de Atendimento ao Cliente TAT')    
+
+    it('verifica o título da aplicação', function() {        
+      
+      cy.title().should('be.equal', 'Central de Atendimento ao Cliente TAT')    
     })
 
-    it('Preenche campos envia formulario', function() {    
+   it('Preenche campos envia formulario', function() {    
+
+    cy.clock()
+
       cy.get('#firstName').type(nome)
       cy.get('#lastName').type(sobrenome)
       cy.get('#email').type(email)      
@@ -39,11 +42,17 @@ describe('Central de Atendimento ao Cliente TAT', function() {
 
       cy.get('.button').click()
       cy.contains("Forneça o máximo de informações, por favor.")
+
+      cy.get('.success').should('be.visible')
       cy.get('.success').should('have.contain','Mensagem enviada com sucesso.')
+      
+      cy.tick(tempo)
+      cy.get('.success').should('not.be.visible')
       
     })
   
-    it('Valida erro campos sem preencher', function() {    
+    Cypress._.times(2, () => {
+      it('Valida erro campos sem preencher', function() {    
       cy.get('#firstName').type(nome)
       cy.get('#email').type(email)      
       cy.get('#phone').type(telefone)
@@ -56,8 +65,8 @@ describe('Central de Atendimento ao Cliente TAT', function() {
       cy.get('.error').should('be.visible')
       cy.get('.error > strong', {timeout: 3000}).should('have.text','Valide os campos obrigatórios!')
 
+      })
     })
-    
     it('Preenche e limpa campos', () => {
       
       cy.get('#firstName').type(nome).should('have.value',nome).clear()
